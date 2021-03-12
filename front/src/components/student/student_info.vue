@@ -24,6 +24,9 @@
                 <el-form-item label="邮箱" prop="Email">
 					<el-input v-model="form.Email"></el-input>
 				</el-form-item>
+                	<el-form-item label="金额" prop="Student_code">
+					<el-input v-model="form.money" disabled=""></el-input>
+				</el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="submitForm('form')">提交</el-button>
                     <el-button @click.native.prevent="reset">重置</el-button>
@@ -44,7 +47,8 @@ import {mapState,mapGetters,mapActions} from 'vuex'
                     Academy_name: '',
                     Class_name: '',
                     Sex: '',
-                    Email: ''       
+                    Email: '',
+                    money:''      
                 },
                 /*rule: {
                     Student_name: [
@@ -96,7 +100,9 @@ import {mapState,mapGetters,mapActions} from 'vuex'
 					this.form.Academy_name = result.Academy_name
 					this.form.Class_name = result.Class_name;
 					this.form.Sex = result.Sex;
-					this.form.Email = result.Email;
+                    this.form.Email = result.Email;
+					this.form.money = result.money;
+                    
 				}).then(function(error) {
 					console.log(error);
 				})

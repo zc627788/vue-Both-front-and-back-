@@ -5,6 +5,7 @@ Vue.prototype.$http = axios
 export default{
 	state:{
 		students:[],
+		a:'1'
 	},
 	getters:{
 		students:state=>state.students,
@@ -22,6 +23,7 @@ export default{
 		findAllStudents(context){
 			axios.get('http://localhost:3000/student/findAll').then(({data})=>{
 				context.commit('alterStudents',data);
+				console.log('context.state.student')
 			})
         },
         // 保存学生信息

@@ -4,7 +4,8 @@ Vue.prototype.$http = axios
 
 export default{
   state:{
-      records:[]
+      records:[],
+
   },
   getters:{
       records:state=>state.records
@@ -12,6 +13,7 @@ export default{
   mutations:{
       alterRecords(state,data){
           state.records=data
+          console.log('data', data)
       }
   },
   actions:{

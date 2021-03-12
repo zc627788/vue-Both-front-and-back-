@@ -20,6 +20,7 @@
               <el-table
                 :data="records"
                 style="width: 100%; text-align: center"
+                :row-class-name="tableRowClassName"
                 height="440"
                 header-cell-style="text-align:center;background-color:#f0f9eb;"
               >
@@ -42,7 +43,10 @@
                   prop="return_date"
                   label="应还书日期"
                   :formatter="dateFormat"
-                ></el-table-column>
+                >
+                  <el-table-column prop="return_date" label="剩余天数">
+                  </el-table-column>
+                </el-table-column>
                 <el-table-column label="操作" width="160">
                   <template slot-scope="scope">
                     <el-button
@@ -143,7 +147,6 @@
             </div>
           </el-col>
         </el-row>
-        -->
         <el-dialog
           :title="title"
           :visible.sync="dialogFormVisible"
@@ -181,7 +184,6 @@
             <el-form-item label="应还书日期">
               <el-date-picker
                 v-model="form.return_date"
-                readonly
                 type="date"
                 value-format="yyyy-MM-dd"
                 style="width: 400px"
@@ -274,14 +276,24 @@ export default {
       this.dialogFormVisible = false;
       var vm = this;
       if (this.title == "增加借书信息") {
+        if (
+          new Date(this.form.return_date).getTime() <
+          new Date(this.form.borrow_date).getTime()
+        ) {
+          vm.$message({
+            type: "error",
+            message: "还书日期有误",
+          });
+          return;
+        }
         this.saveborrowbook1(this.form)
           .then(function (data) {
             console.log("3333", "借书", data);
-            if (data.data&&data.data.sqlMessage) {
+            if (data.data && data.data.sqlMessage) {
               vm.$message({
                 type: "error",
                 message: "借书失败,您已借过该书!",
-              }); 
+              });
               return;
             }
             vm.$message({
@@ -346,6 +358,12 @@ export default {
           });
       });
     },
+    divTime(time1, time2) {
+      time1 = Date.parse(new Date(time1));
+      time2 = Date.parse(new Date(time2));
+      return Math.abs(parseInt((time2 - time1) / 1000 / 3600 / 24)) + 1;
+    },
+
     handleClick(tab, event) {
       if (this.activeName == "first") {
         var params = { username: sessionStorage.getItem("username") };
@@ -355,6 +373,21 @@ export default {
         this.findAllBook();
       } else {
       }
+    },
+    tableRowClassName({ row, rowIndex }) {
+      const { borrow_date, return_date } = row;
+      console.log("borrow_date", String(borrow_date).split("T")[0]);
+      const timeEnd = this.divTime(new Date(), return_date);
+      console.log("timeEnd", timeEnd);
+      //  const endTime=new Date(retur_date).getTime() / 1000-parseInt(new Date(borrow_date).getTime()/1000)
+      //   console.log('object', timeDay = parseInt(endTime / 60 / 60 / 24))
+      //   console.log('row', new Date(retur_date).getTime() / 1000-parseInt(new Date(borrow_date).getTime()/1000))
+      if (timeEnd < 5) {
+        return "warning-row";
+      } else if (timeEnd < 0) {
+        return "error-row";
+      }
+      return "";
     },
     ...mapActions([
       "findAllBook",
@@ -369,8 +402,8 @@ export default {
     ]),
   },
 };
-</script>  
-<style scoped>
+</script >  
+<style >
 .tabletop {
   padding: 10px 0 20px 0;
 }
@@ -384,6 +417,13 @@ export default {
 .breadcrumb {
   margin-bottom: 20px;
   margin-top: -14px;
+}
+.el-table .warning-row {
+  background: rgb(241, 245, 10);
+}
+
+.el-table .error-row {
+  background: hsl(7, 94%, 68%);
 }
 </style>
 
