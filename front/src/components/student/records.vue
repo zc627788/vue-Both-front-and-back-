@@ -284,7 +284,7 @@ export default {
       const sencondDay = moment(row.return_date).format("YYYY-MM-DD");
       const isOutDate = firstDay < sencondDay;
       const day = Math.abs(this.divTime(new Date(), row.return_date));
-      const expires = firstDay < sencondDay ? day * 0.5 : 0;
+      const expires = firstDay > sencondDay ? day * 0.5 : 0;
 
       this.$confirm(
         `${

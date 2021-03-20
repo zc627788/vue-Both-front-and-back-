@@ -33,7 +33,7 @@
                   label="借阅总数">
                 </el-table-column>
                 <el-table-column
-                  prop="Total_num"
+                  prop="num"
                   label="名次">
                 </el-table-column>
                 <!-- <el-table-column label="操作" width="184">
@@ -65,7 +65,7 @@
               <el-input v-model="form.Total_num" style="width:400px;"></el-input>
             </el-form-item>
             <el-form-item label="名次" class="row">
-              <el-input v-model="form.Total_num" style="width:400px;"></el-input>
+              <el-input v-model="form.num" style="width:400px;"></el-input>
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
