@@ -1,10 +1,9 @@
-21313# Library_System-master
-### 前端使用的是VUE，后端使用的是express，数据库使用的是MySQL 图书管理系统
-# 运行
+### 																								VUE+Express+MySQL 图书管理系统
+# 运行方式:
 
-## 1.先去把SQL文件在你的本地执行以下
-## 2.cd 到 front目录下，然后执行 npm run dev 
-## 3.cd 到backednpm start 
+## 1.下载MySQL,先去把SQL文件导入到数据库中
+## 2.cd 到 front目录下，然后执行 yarn dev 
+## 3.cd 到backed yarn start 
 
 
 

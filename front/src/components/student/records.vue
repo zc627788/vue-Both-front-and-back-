@@ -268,7 +268,6 @@ export default {
             });
           });
         let id = this.form.Book_num;
-        console.log("id", id);
         this.updateBookNum(id)
           .then(function(data) {
             console.log("减", data);
@@ -341,7 +340,6 @@ export default {
     handleClick(tab, event) {
       if (this.activeName == "first") {
         var params = { username: sessionStorage.getItem("username") };
-        console.log("7777", params);
         this.findStudentRecord(params);
       } else if (this.activeName == "second") {
         this.findAllBook();

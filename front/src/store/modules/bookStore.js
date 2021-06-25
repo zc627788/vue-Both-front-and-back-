@@ -29,10 +29,8 @@ export default {
         // 借阅数量查找前4本书籍
         findRecommend(context) {
             axios.get('http://localhost:3000/book/findRecommend').then(({ data }) => {
-                console.log(data)
                 context.commit('alterBook', data)
             }).catch((error) => {
-                console.log(error)
             })
         },
         // 模糊查询(通过书名或作者)

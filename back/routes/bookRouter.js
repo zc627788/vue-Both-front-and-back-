@@ -31,7 +31,7 @@ router.get('/query', (req, res) => {
         res.send(error);
     });
 });
-// 通过id删除多本书籍
+// 通过id删除书籍
 router.post('/batchDelete', (req, res) => {
     var ids = req.body.ids;
     bookDB.batchDelete(ids).then((data) => {
