@@ -33,7 +33,8 @@ module.exports = {
             + book.Total_num + "','"
             + book.Current_num + "','"
             + book.Buy_date + "','"
-            + book.Brief + "')";
+            + book.Brief + "','"
+            + 0 + "')";
         console.log(sql);
         return pool.execute(sql);
     },

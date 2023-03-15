@@ -74,6 +74,10 @@
                 <i class="el-icon-info"></i>
                 <span>个人中心</span>
               </el-menu-item>
+              <el-menu-item index="/library/recharge">
+                <i class="el-icon-orange"></i>
+                <span>充值中心</span>
+              </el-menu-item>
               <el-menu-item index="/library/editpassword">
                 <i class="el-icon-edit"></i>
                 <span>修改密码</span>

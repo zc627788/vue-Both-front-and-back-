@@ -1,86 +1,99 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '@/components/Home.vue'
-import Slider from '@/components/slider.vue'
-import BookSearch from '@/components/student/search.vue'
-import BookRecord from '@/components/student/records.vue'
-import StudentCenter from '@/components/student/student_info.vue'
-import editPassword from '@/components/student/edit_pass.vue'
-import BookRecommend from '@/components/student/bookRecommend.vue'
-import studentRecord from '@/components/admin/stu_record.vue'
-import login from '@/components/admin/login.vue'
-import register from '@/components/admin/register.vue'
-import backHome from '@/components/admin/backHome.vue'
-import manageBook from '@/components/admin/manage_book.vue'
-//import bookRecord from '@/components/admin/book_record.vue'
-import StudentInfo from '@/components/admin/stu_info.vue'
-import top from '@/components/admin/top.vue'
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "@/components/Home.vue";
+import Slider from "@/components/slider.vue";
+import BookSearch from "@/components/student/search.vue";
+import BookRecord from "@/components/student/records.vue";
+import StudentCenter from "@/components/student/student_info.vue";
+import editPassword from "@/components/student/edit_pass.vue";
+import BookRecommend from "@/components/student/bookRecommend.vue";
+import studentRecord from "@/components/admin/stu_record.vue";
+import recharge from "@/components/student/recharge.vue";
+import pay_money from "@/components/student/pay_money.vue";
 
-Vue.use(Router)
+import login from "@/components/admin/login.vue";
+import register from "@/components/admin/register.vue";
+import backHome from "@/components/admin/backHome.vue";
+import manageBook from "@/components/admin/manage_book.vue";
+//import bookRecord from '@/components/admin/book_record.vue'
+import StudentInfo from "@/components/admin/stu_info.vue";
+import top from "@/components/admin/top.vue";
+
+Vue.use(Router);
 
 export default new Router({
-    routes: [{
-        path: '/',
-        component: login,
+  routes: [
+    {
+      path: "/",
+      component: login
     },
     {
-        path: '/register',
-        component: register,
+      path: "/pay",
+      component: pay_money
     },
     {
-        path: '/library',
-        component: Home,
-        children: [
-            {
-                path: 'slider',
-                component: Slider
-            },
-            {
-                path: 'booksearch',
-                component: BookSearch
-            },
-            {
-                path: 'bookRecommend',
-                component: BookRecommend
-            },
-            {
-                path: 'bookrecord',
-                component: BookRecord
-            },
-            {
-                path: 'studentinfo',
-                component: StudentCenter
-            },
-            {
-                path: 'studentrecord',
-                component: studentRecord
-            },
-            {
-                path: 'editpassword',
-                component: editPassword
-
-            }
-        ]
+      path: "/register",
+      component: register
     },
     {
-        path: '/backhome',
-        component: backHome,
-        children: [
-            {
-                path: 'managebook',
-                component: manageBook
-            },
-            {
-                path: 'studentinfo',
-                component: StudentInfo
-            },
-            {
-                path: 'top',
-                component: top
-            },
-            {
-                path: 'studentrecord',
-                component: studentRecord
-            }]
-    }]
-})
+      path: "/library",
+      component: Home,
+      children: [
+        {
+          path: "slider",
+          component: Slider
+        },
+        {
+          path: "booksearch",
+          component: BookSearch
+        },
+        {
+          path: "bookRecommend",
+          component: BookRecommend
+        },
+        {
+          path: "bookrecord",
+          component: BookRecord
+        },
+        {
+          path: "studentinfo",
+          component: StudentCenter
+        },
+        {
+          path: "studentrecord",
+          component: studentRecord
+        },
+        {
+          path: "editpassword",
+          component: editPassword
+        },
+        {
+          path: "recharge",
+          component: recharge
+        }
+      ]
+    },
+    {
+      path: "/backhome",
+      component: backHome,
+      children: [
+        {
+          path: "managebook",
+          component: manageBook
+        },
+        {
+          path: "studentinfo",
+          component: StudentInfo
+        },
+        {
+          path: "top",
+          component: top
+        },
+        {
+          path: "studentrecord",
+          component: studentRecord
+        }
+      ]
+    }
+  ]
+});

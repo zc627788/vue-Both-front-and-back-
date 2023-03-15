@@ -4,8 +4,8 @@ var mysql = require('mysql');
 var pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '123456',
-    database: 'expressdb',
+    password: '12345678910',
+    database: 'library',
     acquireTimeout: 15000, // 连接超时时间
     connectionLimit: 10000, // 最大连接数
     waitForConnections: true, // 超过最大连接时排队

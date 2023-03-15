@@ -2,7 +2,9 @@
   <div>
     <div class="breadcrumb">
       <el-breadcrumb separator-class="el-icon-d-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/library/slider' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/library/slider' }"
+          >首页</el-breadcrumb-item
+        >
         <el-breadcrumb-item>我的图书馆</el-breadcrumb-item>
         <el-breadcrumb-item>我的借阅</el-breadcrumb-item>
       </el-breadcrumb>
@@ -35,10 +37,25 @@
                 height="440"
                 header-cell-style="text-align:center;background-color:#f0f9eb;"
               >
-                <el-table-column prop="Book_name" label="书名" class="bookname"></el-table-column>
-                <el-table-column prop="Student_name" label="学生名称"></el-table-column>
-                <el-table-column prop="borrow_date" label="借书日期" :formatter="dateFormat"></el-table-column>
-                <el-table-column prop="return_date" label="应还书日期" :formatter="dateFormat">
+                <el-table-column
+                  prop="Book_name"
+                  label="书名"
+                  class="bookname"
+                ></el-table-column>
+                <el-table-column
+                  prop="Student_name"
+                  label="学生名称"
+                ></el-table-column>
+                <el-table-column
+                  prop="borrow_date"
+                  label="借书日期"
+                  :formatter="dateFormat"
+                ></el-table-column>
+                <el-table-column
+                  prop="return_date"
+                  label="应还书日期"
+                  :formatter="dateFormat"
+                >
                   <!-- <el-table-column prop="return_date" label="剩余天数">
                   </el-table-column>-->
                 </el-table-column>
@@ -52,7 +69,8 @@
                       icon="el-icon-time"
                       @click="handleReturn(scope.$index, scope.row)"
                       size="small"
-                    >还书</el-button>
+                      >还书</el-button
+                    >
                   </template>
                 </el-table-column>
               </el-table>
@@ -88,17 +106,38 @@
               height="600"
               header-cell-style="text-align:center;background-color:oldlace;color:grey"
             >
-              <el-table-column prop="imgPath" label="封面">
+              <el-table-column
+                style="width: 100%; text-align: center"
+                prop="imgPath"
+                label="封面"
+              >
                 <template slot-scope="scope">
-                  <img :src="scope.row.imgPath" alt style="width: 100px; height: 105px" />
+                  <img
+                    :src="scope.row.imgPath"
+                    alt
+                    style="width: 100px; height: 105px"
+                  />
                 </template>
               </el-table-column>
               <el-table-column label="书名" prop="Book_name"></el-table-column>
               <el-table-column label="作者" prop="Writer"></el-table-column>
-              <el-table-column label="出版社" prop="Pub_company"></el-table-column>
-              <el-table-column label="出版日期" :formatter="dateFormat1" prop="Pub_date"></el-table-column>
-              <el-table-column label="书籍总数" prop="Total_num"></el-table-column>
-              <el-table-column label="当前数量" prop="Current_num"></el-table-column>
+              <el-table-column
+                label="出版社"
+                prop="Pub_company"
+              ></el-table-column>
+              <el-table-column
+                label="出版日期"
+                :formatter="dateFormat1"
+                prop="Pub_date"
+              ></el-table-column>
+              <el-table-column
+                label="书籍总数"
+                prop="Total_num"
+              ></el-table-column>
+              <el-table-column
+                label="当前数量"
+                prop="Current_num"
+              ></el-table-column>
               <el-table-column label="书籍描述" prop="Brief"></el-table-column>
               <el-table-column label="操作">
                 <template slot-scope="scope">
@@ -108,7 +147,8 @@
                     plain
                     round
                     @click="handleEdit(scope.$index, scope.row)"
-                  >借书</el-button>
+                    >借书</el-button
+                  >
                 </template>
               </el-table-column>
             </el-table>
@@ -123,13 +163,28 @@
             </div>
           </el-col>
         </el-row>
-        <el-dialog :title="title" :visible.sync="dialogFormVisible" center width="40%">
+        <el-dialog
+          :title="title"
+          :visible.sync="dialogFormVisible"
+          center
+          width="40%"
+        >
           <el-form :model="form">
             <el-form-item label="书的编号">
-              <el-input v-model="form.Book_num" readonly style="width: 400px" class="row"></el-input>
+              <el-input
+                v-model="form.Book_num"
+                readonly
+                style="width: 400px"
+                class="row"
+              ></el-input>
             </el-form-item>
             <el-form-item label="学生学号">
-              <el-input v-model="form.Student_code" readonly style="width: 400px" class="row"></el-input>
+              <el-input
+                v-model="form.Student_code"
+                readonly
+                style="width: 400px"
+                class="row"
+              ></el-input>
             </el-form-item>
             <el-form-item label="借书日期">
               <el-date-picker
@@ -195,7 +250,7 @@ export default {
     };
   },
   created() {
-    var params = { username: sessionStorage.getItem("username") };
+    var params = { username: Storage.getItem("username") };
     console.log("111", params);
     this.findStudentRecord(params);
     this.findAllBook();
@@ -247,11 +302,17 @@ export default {
         }
         this.saveborrowbook1(this.form)
           .then(function(data) {
-            console.log("3333", "借书", data);
             if (data.data && data.data.sqlMessage) {
               vm.$message({
                 type: "error",
                 message: "借书失败,您已借过该书!"
+              });
+              return;
+            }
+            if (data.data.length === 0) {
+              vm.$message({
+                type: "error",
+                message: "你已欠费,请充值"
               });
               return;
             }
@@ -371,8 +432,8 @@ export default {
     ])
   }
 };
-</script >  
-<style >
+</script>
+<style>
 .tabletop {
   padding: 10px 0 20px 0;
 }
@@ -395,4 +456,3 @@ export default {
   background: hsl(7, 94%, 68%);
 }
 </style>
-

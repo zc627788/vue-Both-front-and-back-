@@ -56,7 +56,7 @@
               </el-menu-item>
               <el-menu-item index="/backhome/studentrecord">
                 <i class="el-icon-star-on"></i>
-                <span></span>
+                <span>借阅管理</span>
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>

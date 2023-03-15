@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+  </body>
+</html>
+<input type="text" onkeyup="debounce(ajaxFunc,2000)()" />
+
+<script>
+  function ajaxFunc(params) {
+    console.log(123123123);
+  }
+  function debounce(fn, delay) {
+    let time = null;
+    return function () { 
+      if (time) clearTimeout(time);
+      time = setTimeout(() => {
+        fn.apply(this, arguments);
+        time = null;
+      }, delay);
+    };
+  }
+</script>

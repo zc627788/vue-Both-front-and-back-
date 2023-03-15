@@ -77,6 +77,7 @@ router.post('/addrecord', (req, res) => {
         return_date: req.body.return_date.slice(0, 10)
     };
     BookStudentDB.save1(bookstudent).then((data) => {
+        console.log(data)
         res.send(data);
     }).catch((error) => {
         console.log(error);

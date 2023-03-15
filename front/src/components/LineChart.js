@@ -23,7 +23,7 @@ export default {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       datasets: [
         {
-          label: '2016年',
+          label: '2021年',
           borderColor: '#FC2525',
           pointBackgroundColor: '#fff',
           borderWidth: 1,
@@ -31,7 +31,7 @@ export default {
           backgroundColor: this.gradient,
           data: [70, 20, 102, 159, 268, 65, 40, 20, 136, 112, 157, 181]
         },{
-          label: '2017年',
+          label: '2022年',
           borderColor: '#05CBE1',
           pointBackgroundColor: 'white',
           pointBorderColor: 'white',

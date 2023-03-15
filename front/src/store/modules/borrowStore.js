@@ -56,6 +56,7 @@ export default{
             console.log('form', form)
             return new Promise(function(resolve,reject){
                 axios.post('http://localhost:3000/bookstudent/addrecord',form).then((data)=>{
+                    console.log(1111,data)
                 resolve(data);
                 }).catch(function(error){
                     reject(error)
